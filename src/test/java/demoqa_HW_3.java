@@ -1,5 +1,4 @@
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.SetValueOptions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +7,7 @@ import java.io.File;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
-import static org.openqa.selenium.remote.tracing.EventAttribute.setValue;
+
 
 public class demoqa_HW_3 {
     @BeforeAll
@@ -47,7 +46,7 @@ public class demoqa_HW_3 {
         $("#subjectsInput").setValue(subjects).pressEnter();
         $("#hobbiesWrapper").$(byText("Sports")).click();
 
-        // $("#uploadPicture").uploadFile(image);
+        $("#uploadPicture").uploadFile(new File("src/test/resources/приветственное фото.jpg"));
         $("#currentAddress").setValue(Current_Address);
         $("#state").click();
         $("#stateCity-wrapper").$(byText("NCR")).click();
@@ -57,7 +56,7 @@ public class demoqa_HW_3 {
 
 
         $(".modal-title").shouldHave(text("Thanks for submitting the form"));
-        $(".table-responsive").shouldHave(text("Alexandra Ilina"), text(userEmail), text("23 August,1987"), text("Female"), text(subjects), text(Current_Address));
+        $(".table-responsive").shouldHave(text("Alexandra Ilina"), text(userEmail), text("1234567890"), text("23 August,1987"), text("Female"), text(subjects), text(Current_Address), text("приветственное фото"));
 
 
 
