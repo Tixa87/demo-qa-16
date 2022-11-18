@@ -24,7 +24,6 @@ public class demoqa_HW_3 {
         String userEmail = "test@test.com";
         String NumberMobile = "1234567890";
         String subjects = "Maths";
-       // File image = File(" не успела еще разобраться как и где размещать файл");
         String Current_Address = "Rozino BB";
 
         open("https://demoqa.com/automation-practice-form");
