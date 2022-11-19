@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 
-public class demoqa_HW_3 {
+public class DemoqaHW3 {
     @BeforeAll
     static void beforeAll() {
         Configuration.holdBrowserOpen = true;
@@ -22,9 +22,9 @@ public class demoqa_HW_3 {
         String firstName = "Alexandra";
         String lastName = "Ilina";
         String userEmail = "test@test.com";
-        String NumberMobile = "1234567890";
+        String numberMobile = "1234567890";
         String subjects = "Maths";
-        String Current_Address = "Rozino BB";
+        String current_Address = "Rozino BB";
 
         open("https://demoqa.com/automation-practice-form");
 
@@ -34,7 +34,7 @@ public class demoqa_HW_3 {
         $("#lastName").setValue(lastName);
         $("#userEmail").setValue(userEmail);
         $("#genterWrapper").$(byText("Female")).click();
-        $("#userNumber").setValue(NumberMobile);
+        $("#userNumber").setValue(numberMobile);
 
        // BirthDay Window
         $("#dateOfBirthInput").click();
@@ -46,7 +46,7 @@ public class demoqa_HW_3 {
         $("#hobbiesWrapper").$(byText("Sports")).click();
 
         $("#uploadPicture").uploadFile(new File("src/test/resources/приветственное фото.jpg"));
-        $("#currentAddress").setValue(Current_Address);
+        $("#currentAddress").setValue(current_Address);
         $("#state").click();
         $("#stateCity-wrapper").$(byText("NCR")).click();
         $("#city").click();
@@ -55,7 +55,7 @@ public class demoqa_HW_3 {
 
 
         $(".modal-title").shouldHave(text("Thanks for submitting the form"));
-        $(".table-responsive").shouldHave(text("Alexandra Ilina"), text(userEmail), text("1234567890"), text("23 August,1987"), text("Female"), text(subjects), text(Current_Address), text("приветственное фото"));
+        $(".table-responsive").shouldHave(text("Alexandra Ilina"), text(userEmail), text(numberMobile), text("23 August,1987"), text("Female"), text(subjects), text(current_Address), text("приветственное фото"));
 
 
 
