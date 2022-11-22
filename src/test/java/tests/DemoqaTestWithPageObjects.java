@@ -1,18 +1,8 @@
-package Tests;
-
+package tests;
 
 import org.junit.jupiter.api.Test;
-import pages.RegistrationPage;
-
-import java.io.File;
-
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
-
 
 public class DemoqaTestWithPageObjects extends TesBase {
-
 
     @Test
 
@@ -26,7 +16,7 @@ public class DemoqaTestWithPageObjects extends TesBase {
        String hobby = "Sports";
        String filename ="приветственное фото";
        String pathFileName = "images/" + filename;
-       String current_Address = "Rozino BB";
+       String currentAddress = "Rozino BB";
        String state = "NCR";
        String city = "Gurgaon";
 
@@ -40,12 +30,10 @@ public class DemoqaTestWithPageObjects extends TesBase {
                .selectSubject(subjects)
                .selectHobby(hobby)
                .uploadPicture(pathFileName)
-               .setCurrentAddress(current_Address)
+               .setCurrentAddress(currentAddress)
                .setState(state)
                .setCity(city)
                .sendForm();
-
-
 
        registrationPage.verifyResultsModalAppears()
                .verifyResult("Student Name", firstName + lastName)
@@ -56,11 +44,7 @@ public class DemoqaTestWithPageObjects extends TesBase {
                .verifyResult("Subjects", subjects)
                .verifyResult("Hobbies", hobby)
                .verifyResult("Picture", filename)
-               .verifyResult("Address", current_Address)
+               .verifyResult("Address", currentAddress)
                .verifyResult("State and City", state + " " + city);
-
-
-
-
     }
 }
