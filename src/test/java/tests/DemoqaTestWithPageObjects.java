@@ -7,18 +7,18 @@ public class DemoqaTestWithPageObjects extends TesBase {
     @Test
 
      void fillFormTest() {
-
-       String firstName = "Alexandra";
-       String lastName = "Ilina";
-       String userEmail = "test@test.com";
-       String numberMobile = "1234567890";
-       String subjects = "Maths";
-       String hobby = "Sports";
-       String filename ="приветственное фото";
-       String pathFileName = "images/" + filename;
-       String currentAddress = "Rozino BB";
-       String state = "NCR";
-       String city = "Gurgaon";
+        Faker faker = new Faker();
+        String firstName = "Alexandra ";
+        String lastName = "Ilina";
+        String userEmail = "test@test.com";
+        String numberMobile = "1234567890";
+        String subjects = "Maths";
+        String hobby = "Sports";
+        String filename ="приветственное фото.jpg";
+       //String pathFileName = "img/приветственное фото.jpg";
+        String currentAddress = "Rozino BB";
+        String state = "NCR";
+        String city = "Gurgaon";
 
        registrationPage.openPage()
                .setFirstName(firstName)
@@ -29,7 +29,7 @@ public class DemoqaTestWithPageObjects extends TesBase {
                .setBirthDate("23", "August", "1987")
                .selectSubject(subjects)
                .selectHobby(hobby)
-               .uploadPicture(pathFileName)
+               .uploadPicture(filename)
                .setCurrentAddress(currentAddress)
                .setState(state)
                .setCity(city)
@@ -40,7 +40,7 @@ public class DemoqaTestWithPageObjects extends TesBase {
                .verifyResult("Student Email", userEmail)
                .verifyResult("Gender", "Female")
                .verifyResult("Mobile", numberMobile)
-               .verifyResult("Date of Birth", "23 August,1897")
+               .verifyResult("Date of Birth", "23 August,1987")
                .verifyResult("Subjects", subjects)
                .verifyResult("Hobbies", hobby)
                .verifyResult("Picture", filename)
