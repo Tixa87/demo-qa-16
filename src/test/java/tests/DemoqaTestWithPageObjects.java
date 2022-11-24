@@ -1,6 +1,7 @@
 package tests;
 
 import org.junit.jupiter.api.Test;
+import com.github.javafaker.Faker;
 
 public class DemoqaTestWithPageObjects extends TesBase {
 
