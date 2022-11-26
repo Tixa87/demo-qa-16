@@ -1,7 +1,8 @@
 package tests;
 
-import org.junit.jupiter.api.Test;
 import com.github.javafaker.Faker;
+import org.junit.jupiter.api.Test;
+import pages.components.RandomGenerator;
 
 public class DemoqaTestWithPageObjects extends TesBase {
 
@@ -9,15 +10,21 @@ public class DemoqaTestWithPageObjects extends TesBase {
 
      void fillFormTest() {
         Faker faker = new Faker();
-        String firstName = "Alexandra ";
-        String lastName = "Ilina";
-        String userEmail = "test@test.com";
-        String numberMobile = "1234567890";
-        String subjects = "Maths";
-        String hobby = "Sports";
+
+        String firstName = faker.name().firstName();
+        String lastName = faker.name().lastName();
+        String userEmail = faker.internet().emailAddress();
+        String numberMobile = faker.phoneNumber().subscriberNumber(10);
+        String dayBirth = String.valueOf(faker.number().numberBetween(10, 28));
+        String yearBirth = String.valueOf(faker.number().numberBetween(1900, 2000));
+        String monthBirth = RandomGenerator.randomBirthMonth();
+        String dateOfBirth = dayBirth + " "+ monthBirth + "," + yearBirth;
+        String userGender = RandomGenerator.randomUserGender();
+        String subjects = RandomGenerator.randomUserSub();
+        String hobby = RandomGenerator.randomUserHobby();
         String filename ="приветственное фото.jpg";
        //String pathFileName = "img/приветственное фото.jpg";
-        String currentAddress = "Rozino BB";
+        String currentAddress = faker.address().streetAddress();
         String state = "NCR";
         String city = "Gurgaon";
 
@@ -25,9 +32,9 @@ public class DemoqaTestWithPageObjects extends TesBase {
                .setFirstName(firstName)
                .setLastName(lastName)
                .setEmail(userEmail)
-               .setGender("Female")
+               .setGender(userGender)
                .setPhone(numberMobile)
-               .setBirthDate("23", "August", "1987")
+               .setBirthDate(dayBirth, monthBirth, yearBirth)
                .selectSubject(subjects)
                .selectHobby(hobby)
                .uploadPicture(filename)
@@ -36,12 +43,15 @@ public class DemoqaTestWithPageObjects extends TesBase {
                .setCity(city)
                .sendForm();
 
+       //RandomGenerator.randomUserGender()
+        //       .;
+
        registrationPage.verifyResultsModalAppears()
-               .verifyResult("Student Name", firstName + lastName)
+               .verifyResult("Student Name", firstName + " " + lastName)
                .verifyResult("Student Email", userEmail)
-               .verifyResult("Gender", "Female")
+               .verifyResult("Gender", userGender)
                .verifyResult("Mobile", numberMobile)
-               .verifyResult("Date of Birth", "23 August,1987")
+               .verifyResult("Date of Birth", dateOfBirth)
                .verifyResult("Subjects", subjects)
                .verifyResult("Hobbies", hobby)
                .verifyResult("Picture", filename)
